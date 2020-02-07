@@ -1,0 +1,70 @@
+/*
+.page{
+    align-items: center;
+  flex-direction: column;
+}
+.form {
+    margin-left: 30;
+    margin-right: 30;
+    flex-grow: 1;
+    vertical-align: middle;
+}*/
+
+.actionBar {
+    text-align: center;
+}
+
+.actionBar1 {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.box {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.form {
+    flex-grow: 1;
+    vertical-align: middle;
+    margin: 0 30;
+}
+
+.btn-primary {
+    height: 30;
+    margin: 30 5 15 5;
+    background-color: red;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+}
+
+.input-field {
+    margin-bottom: 5;
+}
+
+.logo {
+    height: 150;
+    margin-bottom: 30;
+}
+
+.selector {
+    color: blueviolet;
+}
+
+.btn-selector {
+    height: 30;
+    margin: 30 5 15 5;
+    background-color: lightslategray;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+    color: rgb(255, 246, 246);
+}
+
+.teacherLbl,
+.teacherSwitch {
+    text-align: center;
+    vertical-align: center;
+}

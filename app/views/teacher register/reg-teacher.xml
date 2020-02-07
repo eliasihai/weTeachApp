@@ -1,0 +1,61 @@
+<Page loaded="loaded" class="page" actionBarHidden="true" xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <FlexboxLayout class="box">
+        <StackLayout class="form">
+            <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto,auto">
+                <StackLayout row="0" class="input-field">
+                    <TextField class="input" text="{{ firstname }}" hint="First Name" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+                    <Label class="hr-light" />
+                </StackLayout>
+
+                <StackLayout row="1" class="input-field">
+                    <TextField class="input" text="{{ lastname }}" hint="Last Name" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+                    <Label class="hr-light" />
+                </StackLayout>
+
+                <StackLayout row="2" class="input-field">
+                    <TextField class="input" text="{{ email }}" id="email" hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+                    <Label class="hr-light" />
+                </StackLayout>
+
+                <StackLayout row="3" class="input-field">
+                    <TextField id="password" class="input" text="{{ password }}" secure="true" hint="Password" />
+                    <Label class="hr-light" />
+                </StackLayout>
+
+                <StackLayout row="4" class="input-field">
+                    <TextField id="confirmPassword" class="input" text="{{ repassword }}" secure="true" hint="Re-Password" />
+                    <Label class="hr-light" />
+                </StackLayout>
+
+                <StackLayout row="5" class="input-field">
+                    <TextField id="phone" class="input" text="{{ phone }}"  hint="phone number" />
+                    <Label class="hr-light" />
+                  </StackLayout>
+
+                  <StackLayout row="6" class="input-field">
+                    <TextField id="city" class="input" text="{{ city }}"  hint="city" />
+                    <Label class="hr-light" />
+                  </StackLayout>
+
+                  <StackLayout row="7" class="input-field">
+                    <TextField id="address" class="input" text="{{ address }}"  hint="address" />
+                    <Label class="hr-light" />
+                  </StackLayout>
+            </GridLayout>
+            
+            <ScrollView>
+                <StackLayout>
+                    <ListView height="150" items="{{ myTitles }}" itemTap="onItemTap" 
+                    loaded="{{ onListViewLoaded }}" separatorColor="orangered"
+                    class="list-group" row="2">
+                            <ListView.itemTemplate>
+                                <Label text="{{ title || 'Downloading...' }}" textWrap="true" class="title" />
+                            </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+            <Button text="Sign Up" tap="register" class="btn" isEnabled="{{ !processing }}" />
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

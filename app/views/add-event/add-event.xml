@@ -1,0 +1,44 @@
+<Page actionBarHidden="false"  class="page" xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
+    <ActionBar >
+        <navigation.actionBar>
+            
+            <ActionItem tap="onDelete"
+            ios.systemIcon="16" ios.position="right"
+            text="delete" android.position="popup"></ActionItem>
+
+        </navigation.actionBar>
+        <navigation.actionBar>
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
+        </navigation.actionBar>
+    </ActionBar>
+
+    <FlexboxLayout class="page">
+        <StackLayout class="form">
+            <GridLayout rows="auto,auto,auto,auto,auto,auto" columns="*">
+                <StackLayout row="0">
+                    <Label text="{{teacher.firstname + ' ' + teacher.lastname}}" textWrap="true" />
+                </StackLayout>
+                <StackLayout row="1">
+                    <Label text="{{teacher.subject }}" textWrap="true" />
+                </StackLayout>
+
+                <StackLayout row="2">
+                    <!--DatePicker day="{{day}}" month="{{month}}" year="{{year}}"></DatePicker-->
+                    <Label text="{{ Date }}" textWrap="true" />
+                    <Label text="Lesson can be 1 hour or 2 hours" textWrap="true" />
+                    
+                </StackLayout>
+                
+                <StackLayout row="3">
+                    <TimePicker class="time-picker" loaded="onPickerLoadedStart" hour="00" minute="00" ></TimePicker>
+                </StackLayout>
+                <StackLayout row="4">
+                    <TimePicker class="time-picker" loaded="onPickerLoadedEnd" hour="00" minute="00"></TimePicker>
+                </StackLayout>
+                <StackLayout row="5">
+                    <Button text="Add" class="btn btn-primary m-t-10" tap="onAdd"></Button>
+                </StackLayout>
+            </GridLayout>
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

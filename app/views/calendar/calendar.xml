@@ -1,0 +1,56 @@
+
+
+<Page loaded="pageLoaded" actionBarHidden="false" xmlns:calendar="nativescript-ui-calendar" xmlns="http://www.nativescript.org/tns.xsd">
+    
+    
+    <ActionBar title="{{teacherFirstName + ' ' + teacherLastName}}">
+        <navigation.actionBar>
+            
+            <ActionItem tap="onDelete"
+            ios.systemIcon="16" ios.position="right"
+            text="delete" android.position="popup"></ActionItem>
+            
+        </navigation.actionBar>
+        <navigation.actionBar>
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
+        </navigation.actionBar>
+    </ActionBar>
+    
+    
+    <GridLayout rows="*,50" columns="*">
+        <StackLayout row="0">
+            <calendar:RadCalendar id="calendar" eventSource="{{calendarEvents}}" dateSelected="dateSelect"
+             viewMode="Month" minDate="{{ minDate }}" transitionMode="Overlap" eventsViewMode="Popover"/>
+        </StackLayout>
+        <StackLayout row="1">
+            <Button text="Add a lesson" class="btn btn-primary" tap="addLesson"></Button>
+        </StackLayout>
+    </GridLayout>
+
+   
+
+</Page>
+<!--ActionBar title="Selection modes">
+    <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onNavigationButtonTap"></NavigationButton>
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
+    <navigation.actionBar>
+        <ActionBar title="">
+            <ActionBar.actionItems>
+                <ios>
+                    <ActionItem text="Options" ios.position="right" tap="{{onOptionsTapped}}" />
+                </ios>
+                <android>
+                    <ActionItem text="None" android.position="popup" tap="onNoneEventViewModeTapped" />
+                    <ActionItem text="Inline" android.position="popup" tap="onInlineEventViewModeTapped" />
+                    <ActionItem text="Popover" android.position="popup" tap="onPopoverEventViewModeTapped" />
+                </android>
+            </ActionBar.actionItems>
+            
+        </ActionBar>
+    </navigation.actionBar>   
+</ActionBar-->
+
+
+<!--calendar:RadCalendar id="calendar" eventSource="{{calendarEvents}}" dateSelected="dateSelect" 
+                 dayViewEventSelected="onDayViewEventSelected" viewMode="Month" onEventViewTap="onEventViewTap"
+                 eventsViewMode="Inline"/-->

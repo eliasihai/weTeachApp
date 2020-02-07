@@ -1,0 +1,26 @@
+﻿@import "~nativescript-theme-core/css/core.css";
+@import "~@nativescript/theme/css/core.css";
+@import "~@nativescript/theme/css/blue.css";
+
+/*
+.fontAwesomeIcons {
+    /*font-family: "FontAwesone";
+    font-family: "fontawesome-webfont";
+}*/
+
+.fa-brands {
+    font-family: "Font Awesome 5 Brands", "fa-brands-400";
+}
+
+.btn-primary {
+    height: 50;
+    background-color: #D51A1A;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+    color: white;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+}

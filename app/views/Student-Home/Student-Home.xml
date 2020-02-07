@@ -1,0 +1,44 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
+    <!--ActionBar title="{{'Welcome ' + firstname }}"  icon="" class="Bar"  android.iconVisibility="always"-->
+    <ActionBar title="" icon="" class="Bar">
+        <ActionBar.actionItems>
+            <ios>
+                <ActionItem text="Options" ios.position="right" tap="{{onOptionsTapped}}" />
+            </ios>
+            <android>
+                <ActionItem text="Log Out" android.position="actionBarIfRoom" tap="onLogout" />
+                <ActionItem tap="onProfile" ios.systemIcon="16" ios.position="right" text="Profile" android.position="popup"></ActionItem>
+                <!--ActionItem text="Single" android.position="popup" tap="onSingleSetSelectionModeTap" />
+                <ActionItem text="Multiple" android.position="popup" tap="onMultipleSetSelectionModeTap" />
+                <ActionItem text="Range" android.position="popup" tap="onRangeSetSelectionModeTap" /-->
+            </android>
+        </ActionBar.actionItems>
+        <!-- <NavigationButton text="Go Home" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton> -->
+        <!--ActionItem ios.systemIcon="2" android.systemIcon="ic_menu_edit" ios.position="right"></ActionItem-->
+    </ActionBar>
+
+    <FlexboxLayout class="box">
+        <ScrollView>
+            <StackLayout class="stackBox">
+                <ListView items="{{ calendarObsArray }}" itemTap="onItemTap" separatorColor="orangered" rowHeight="170" class="list-group" id="listView">
+                    <ListView.itemTemplate>
+                        <Card:CardView >
+                            <StackLayout class="cardStyle">
+                                <Label class="field" text="{{teacherName || 'Downloading...' }}" textWrap="true" />
+                                <Label class="field" text="{{title || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{teacherPhone || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{dateString || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{start + ':00 - ' +  end + ':00' || 'Downloading...'}}" textWrap="true" />
+                            </StackLayout>
+                        </Card:CardView>
+                    </ListView.itemTemplate>
+                </ListView>
+                
+            </StackLayout>
+        </ScrollView>
+        <Image src="../weTeach/app/images/logo.png" class="deleteLogo" />
+        <StackLayout class="button">
+            <button text="Teachers List" tap="GoToViewList" class="btnToLists" />
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

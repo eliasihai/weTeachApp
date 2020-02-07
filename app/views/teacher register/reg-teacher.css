@@ -1,0 +1,33 @@
+.box {
+    /* margin: 10; */
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.form {
+    flex-grow: 1;
+    vertical-align: middle;
+}
+
+.btn {
+    background-color: red;
+    border-radius: 5;
+    color: white;
+    height: 100px;
+}
+
+.input-field {
+    margin: 11px;
+}
+
+.teacherLB {
+    padding-top: 30;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 15;
+}
+
+.selector {
+    color: violet;
+}

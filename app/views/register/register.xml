@@ -1,0 +1,42 @@
+<Page loaded="loaded" class="page" actionBarHidden="true" xmlns="http://schemas.nativescript.org/tns.xsd">
+
+  <FlexboxLayout class="box">
+    <StackLayout class="form">
+      <GridLayout rows="auto, auto, auto, auto, auto, auto, auto">
+        <StackLayout row="0" class="input-field">
+          <TextField class="input" text="{{ firstname }}" hint="First Name" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+          <Label class="hr-light" />
+        </StackLayout>
+
+        <StackLayout row="1" class="input-field">
+          <TextField class="input" text="{{ lastname }}" hint="Last Name" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+          <Label class="hr-light" />
+        </StackLayout>
+
+        <StackLayout row="2" class="input-field">
+          <TextField class="input" text="{{ email }}" id="email" hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none" returnKeyType="next" />
+          <Label class="hr-light" />
+        </StackLayout>
+
+        <StackLayout row="3" class="input-field">
+          <TextField id="password" class="input" text="{{ password }}" secure="true" hint="Password" />
+          <Label class="hr-light" />
+        </StackLayout>
+
+        <StackLayout row="4" class="input-field">
+          <TextField id="confirmPassword" class="input" text="{{ repassword }}" secure="true" hint="Re-Password" />
+          <Label class="hr-light" />
+        </StackLayout>
+
+        <StackLayout row="5" class="input-field">
+          <TextField id="phone" class="input" text="{{ phone }}"  hint="Phone number" />
+          <Label class="hr-light" />
+        </StackLayout>
+      </GridLayout>
+
+      <Button text="Sign Up" tap="register" class="btn btn-primary m-t-20" isEnabled="{{ !processing }}" />
+
+      <Label class="teacherLB" text="Are you teacher? click Here" textWrap="true" tap="teacherTap"/>
+    </StackLayout>
+  </FlexboxLayout>
+</Page>

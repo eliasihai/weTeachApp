@@ -1,0 +1,9 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
+
+    <ActionBar title="Profile" icon="" class="Bar" ios.position="right" android.position="left">
+    </ActionBar>
+
+
+    <Label text="{{'First Name: ' + firstname}}" textWrap="true" />
+    
+</Page>

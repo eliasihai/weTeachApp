@@ -1,0 +1,39 @@
+ .box {
+     align-items: stretch;
+     flex-direction: column;
+ }
+ 
+ .stackBox {
+     height: 88%;
+ }
+ /* .deleteLogo {} */
+ 
+ .field {
+     text-align: center;
+     /*margin-top: 10;*/
+ }
+ 
+ .btnToLists {
+     background-color: red;
+     font-size: 20px;
+     color: white;
+ }
+ 
+ .cardStyle {
+     background-color: #D3D3D3;
+     color: #000000;
+     font-weight: bold;
+ }
+ /* .far {
+     font-family: "Font Awesome 5 Free", "fa-regular-400";
+     font-weight: 400;
+ } */
+ /* 
+    File name: fa-solid-900.ttf 
+    Font name: Font Awesome 5 Free
+*/
+ /* .fas {
+    font-family: "Font Awesome 5 Free", "fa-solid-900";
+    font-weight: 900;
+} */
+ /* btn btn-primary m-t-10 */

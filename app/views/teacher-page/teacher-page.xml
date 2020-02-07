@@ -1,0 +1,36 @@
+
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
+    <ActionBar title="Teacher Managment Page">
+         <navigation.actionBar>
+           <ActionItem text="Log Out" android.position="actionBarIfRoom" tap="onLogout" />
+        </navigation.actionBar> 
+    </ActionBar>
+
+    <FlexboxLayout class="box">
+
+        <ScrollView class="scrollView">
+            <StackLayout class="stackBox">
+                <ListView items="{{ calendarObsArray }}" itemTap="onItemTap" separatorColor="orangered" rowHeight="130" 
+                 class="list-group" id="listView">
+                    <ListView.itemTemplate>
+                        <Card:CardView >
+                            <StackLayout class="cardStyle">
+                                <Label class="field" text="{{ 'Name: ' +  studentName || 'Downloading...' }}" textWrap="true" />
+                                <Label class="field" text="{{'Phone: ' +  studentPhone || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{'Date: ' +  date || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{ end + ':00 ' + start + ':00 ' || 'Downloading...'}}" textWrap="true" />
+                            </StackLayout>
+                        </Card:CardView>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        <!-- <StackLayout>
+            <Label text="View in calendar:" textWrap="true" class="calendarTitle" />
+
+        </StackLayout> -->
+        <StackLayout class="button">
+            <image class="calendar" src="~/images/calendar.png" tap="calTap" />
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

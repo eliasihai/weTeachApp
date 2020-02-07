@@ -1,0 +1,20 @@
+/* .picker {
+    background-color: blanchedalmond;
+    color: red;
+    border-color: brown;
+    border-radius: 20;
+    border-width: 2;
+    width: 200;
+    height: 100;
+    vertical-align: middle;
+} */
+
+.time-picker {
+    background-color: olivedrab;
+    border-color: burlywood;
+    border-width: 2;
+    border-radius: 10;
+    color: whitesmoke;
+    vertical-align: middle;
+    height: 300px;
+}

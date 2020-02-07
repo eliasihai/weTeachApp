@@ -1,0 +1,14 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <StackLayout>
+        <TextField id="id" hint="Numeric ID" text="{{ id }}" />
+        <TextField id="title" hint="title" text="{{ title }}" />
+        <TextView id="body" hint="body" text="{{ body }}" />
+        <TextView id="ticker" hint="ticker" text="{{ ticker }}" />
+        <StackLayout orientation="horizontal">
+            <Button text="Schedule" tap="schedule" />
+        </StackLayout>
+
+
+        <Button text="del" class="btn btn-primary m-t-10" tap="del"/>
+    </StackLayout>
+</Page>

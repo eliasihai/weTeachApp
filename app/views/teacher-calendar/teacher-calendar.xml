@@ -1,0 +1,20 @@
+<Page xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
+
+    <FlexboxLayout class="box">
+        <StackLayout class="profile">
+            <Card:CardView class="cardStyle" margin="10" elevation="20" radius="2">
+                <StackLayout>
+                    <image class="profilepic" src="~/images/logo.png" />
+                    <Label class="field" text="{{ firstname }}" textWrap="true" />
+                    <Label class="field" text="{{lastname}}" textWrap="true" />
+                    <Label class="field" text="{{email}}" textWrap="true" />
+                </StackLayout>
+            </Card:CardView>
+        </StackLayout>
+        <StackLayout class="button">
+            <Card:CardView class="cardStyle" margin="10" elevation="20" radius="2">
+                <image class="calendar" src="~/images/calendar.png" tap="calTap" />
+            </Card:CardView>
+        </StackLayout>
+    </FlexboxLayout>
+</Page>
