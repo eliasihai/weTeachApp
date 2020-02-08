@@ -9,10 +9,6 @@ var LocalNotifications = require("nativescript-local-notifications").LocalNotifi
 const platformModule = require("tns-core-modules/platform");
 var dialogs = require("ui/dialogs");
 
-const obj = fromObject({
-
-});
-
 function EventViewModel() {
     var viewModel = observableModule.fromObject({
         user: JSON.parse(applicationSettings.getString('user')),
@@ -38,62 +34,62 @@ const eventCtrl = new EventViewModel();
 exports.onAdd = function() {
     let validTime = false;
     var teacher = JSON.parse(applicationSettings.getString('teacher'));
-    let tchrIdStr = teacher._id.toString();
+    let tchrIdStr = eventCtrl.teacher._id.toString();
     console.log("tchrIdStr", tchrIdStr)
-        // if (eventCtrl.calanderEvents.length != 0) {
+    if (eventCtrl.calanderEvents.length != 0) {
 
-    //     if (eventCtrl.startHour == eventCtrl.endHour) {
-    //         validTime = true
-    //         console.log("start == end")
-    //     }
+        if (eventCtrl.startHour == eventCtrl.endHour) {
+            validTime = true
+            console.log("start == end")
+        }
 
-    //     if ((parseInt(eventCtrl.startHour)) == 0) {
-    //         validTime = true
-    //         console.log("start == 0")
-    //     }
+        if ((parseInt(eventCtrl.startHour)) == 0) {
+            validTime = true
+            console.log("start == 0")
+        }
 
-    //     for (let i = 0; i < eventCtrl.calanderEvents.length; i++) {
-    //         let calendarEventFullDate = new Date(eventCtrl.calanderEvents[i].date)
-    //         console.log("calendarEventFullDate:", calendarEventFullDate)
-    //         let calendarEventDate = calendarEventFullDate.getMonth() + 1 + '/' + calendarEventFullDate.getDate() + '/' + calendarEventFullDate.getFullYear()
+        for (let i = 0; i < eventCtrl.calanderEvents.length; i++) {
+            let calendarEventFullDate = new Date(eventCtrl.calanderEvents[i].date)
+            console.log("calendarEventFullDate:", calendarEventFullDate)
+            let calendarEventDate = calendarEventFullDate.getMonth() + 1 + '/' + calendarEventFullDate.getDate() + '/' + calendarEventFullDate.getFullYear()
 
-    //         // Start hour cant be the same if we got that start our
-    //         if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == eventCtrl.calanderEvents[i].start) {
-    //             console.log("start hour has been used")
-    //             validTime = true;
-    //         }
+            // Start hour cant be the same if we got that start our
+            if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == eventCtrl.calanderEvents[i].start) {
+                console.log("start hour has been used")
+                validTime = true;
+            }
 
-    //         // if the lesson is 1 hour
-    //         if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == parseInt(eventCtrl.calanderEvents[i].start) - 1 &&
-    //             eventCtrl.endHour == eventCtrl.calanderEvents[i].end) {
-    //             console.log("End hour cant be the same");
-    //             validTime = true;
-    //         }
+            // if the lesson is 1 hour
+            if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == parseInt(eventCtrl.calanderEvents[i].start) - 1 &&
+                eventCtrl.endHour == eventCtrl.calanderEvents[i].end) {
+                console.log("End hour cant be the same");
+                validTime = true;
+            }
 
-    //         // 2 hours checking
-    //         // if the starthour have include in other lesson. (15:00 - 17:00) - and the start time he chose is 16:00
-    //         if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == parseInt(eventCtrl.calanderEvents[i].start) + 1 &&
-    //             eventCtrl.endHour == eventCtrl.calanderEvents[i].end) {
-    //             console.log("Cant choosing start time that include in other lesson");
-    //             validTime = true;
-    //         }
+            // 2 hours checking
+            // if the starthour have include in other lesson. (15:00 - 17:00) - and the start time he chose is 16:00
+            if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate && eventCtrl.startHour == parseInt(eventCtrl.calanderEvents[i].start) + 1 &&
+                eventCtrl.endHour == eventCtrl.calanderEvents[i].end) {
+                console.log("Cant choosing start time that include in other lesson");
+                validTime = true;
+            }
 
-    //         if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate &&
-    //             parseInt(eventCtrl.startHour) + 1 == parseInt(eventCtrl.calanderEvents[i].start) &&
-    //             parseInt(eventCtrl.endHour) == parseInt(eventCtrl.calanderEvents[i].end) - 1) {
-    //             console.log("Cant choosing start time that include in other lesson with end hour");
-    //             validTime = true;
-    //         }
+            if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate &&
+                eventCtrl.startHour == parseInt(eventCtrl.calanderEvents[i].start) + 1 &&
+                eventCtrl.endHour == eventCtrl.calanderEvents[i].end) {
+                console.log("Cant choose start time that include in other lesson");
+                validTime = true;
+            }
 
-    //         if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate &&
-    //             parseInt(eventCtrl.startHour) == parseInt(eventCtrl.calanderEvents[i].start) + 1 &&
-    //             parseInt(eventCtrl.endHour) == parseInt(eventCtrl.calanderEvents[i].end) + 1 &&
-    //             parseInt(eventCtrl.endHour) - parseInt(eventCtrl.startHour = 2)) {
-    //             console.log("Cant choosing start time that include in other lesson with end hour");
-    //             validTime = true;
-    //         }
-    //     }
-    // }
+            if (tchrIdStr == eventCtrl.calanderEvents[i].teacherID && eventCtrl.Date == calendarEventDate &&
+                parseInt(eventCtrl.startHour) == parseInt(eventCtrl.calanderEvents[i].start) + 1 &&
+                parseInt(eventCtrl.endHour) == parseInt(eventCtrl.calanderEvents[i].end) + 1 &&
+                parseInt(eventCtrl.endHour) - parseInt(eventCtrl.startHour = 2)) {
+                console.log("Cant choosing start time that include in other lesson with end hour");
+                validTime = true;
+            }
+        }
+    }
 
     // console.log(validTime)
     console.log("eventCtrl.teacher.phone ", teacher.phone)
@@ -116,7 +112,7 @@ exports.onAdd = function() {
                 end: eventCtrl.endHour,
                 title: teacher.subject,
                 locNotID: eventCtrl.notificationId,
-                minute: eventCtrl.startMinute,
+                //minute: eventCtrl.startMinute,
             })
         }).then((response) => {
             const result = response.content.toJSON();
@@ -148,8 +144,8 @@ exports.onAdd = function() {
                 applicationSettings.setNumber('localNotification', ++eventCtrl.notificationId);
 
             }
-            // var topmost = frameModule.topmost();
-            // topmost.navigate("views/Student-Home/Student-Home");
+            var topmost = frameModule.topmost();
+            topmost.navigate("views/Student-Home/Student-Home");
         }, (err) => {
             console.log("err post=", err);
         })
