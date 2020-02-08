@@ -29,6 +29,11 @@ exports.signIn = async function(args) {
     const button = args.object;
     const page = button.page;
     const frame = page.frame;
+
+    if (email == "admin" && password == "admin") {
+        frame.navigate('views/admin/admin-page')
+    }
+
     const res = await httpModule.request({
         url: 'https://final-project-lessons.herokuapp.com/login',
         method: 'POST',
@@ -48,12 +53,9 @@ exports.signIn = async function(args) {
         applicationSettings.setString('user', JSON.stringify(result.data));
 
         if (result.data.type == 'student')
-        //....
             frame.navigate('views/Student-Home/Student-Home')
         else if (result.data.type == 'teacher')
             frame.navigate('views/teacher-page/teacher-page')
-        else
-            alert('wrong details');
     } else
         alert('wrong details');
 }

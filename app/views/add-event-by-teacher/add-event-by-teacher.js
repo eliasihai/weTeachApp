@@ -4,8 +4,11 @@ const httpModule = require("tns-core-modules/http");
 const frameModule = require('tns-core-modules/ui/frame');
 const { fromObject } = require('tns-core-modules/data/observable');
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
+var LocalNotifications = require("nativescript-local-notifications").LocalNotifications;
+const platformModule = require("tns-core-modules/platform");
+var dialogs = require("ui/dialogs");
 
-var student = [];
+
 let phoneClicked = false;
 const obj = fromObject({
     student_id: '',
@@ -28,6 +31,7 @@ function EventViewModel() {
         teacherName: '',
         teacherPhone: '',
         phone: '',
+        notificationId: (applicationSettings.getNumber('localNotification')) ? applicationSettings.getNumber('localNotification') : 1
     });
     return viewModel;
 }
@@ -35,17 +39,8 @@ function EventViewModel() {
 const eventCtrl = new EventViewModel();
 
 exports.onAdd = function() {
-    // console.log("Start Hour selected", eventCtrl.startHour)
-    // console.log("End Hour selected", eventCtrl.endHour)
-    // console.log('User is: ', obj.student_id)
-    // console.log("Date:", eventCtrl.Date)
-    // console.log("teacher.phone:", eventCtrl.teacher.phone)
-
     let validTime = false;
-
     let tchrIdStr = eventCtrl.teacher._id.toString();
-    // console.log("tchrIdStr", tchrIdStr)
-    // console.log("eventCtrl.teacherID", eventCtrl.calanderEvents[1].teacherID)
     if (eventCtrl.calanderEvents.length != 0) {
 
         if (eventCtrl.startHour == eventCtrl.endHour) {
@@ -96,41 +91,78 @@ exports.onAdd = function() {
         }
     }
 
-    console.log(validTime)
+    console.log("validTime ", validTime)
+    console.log("phoneClicked ", phoneClicked)
+    if (eventCtrl.phone != null && phoneClicked == true) {
+        if (!validTime) {
+            httpModule.request({
+                url: "https://final-project-lessons.herokuapp.com/lecture/Insert",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                content: JSON.stringify({
+                    teacherID: eventCtrl.teacher._id,
+                    studentID: obj.student_id,
+                    teacherName: eventCtrl.teacher.firstname + ' ' + eventCtrl.teacher.lastname,
+                    studentName: obj.studentName + ' ' + obj.studentLastName,
+                    teacherPhone: eventCtrl.teacher.phone,
+                    studentPhone: eventCtrl.phone,
+                    date: eventCtrl.Date,
+                    start: eventCtrl.startHour,
+                    end: eventCtrl.endHour,
+                    title: eventCtrl.teacher.subject,
+                    locNotID: eventCtrl.notificationId
+                })
+            }).then((response) => {
+                const result = response.content.toJSON();
+                console.log(result)
 
-    if (!validTime) {
-        httpModule.request({
-            url: "https://final-project-lessons.herokuapp.com/lecture/Insert",
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            content: JSON.stringify({
-                teacherID: eventCtrl.teacher._id,
-                studentID: obj.student_id,
-                teacherName: eventCtrl.teacher.firstname + ' ' + eventCtrl.teacher.lastname,
-                studentName: obj.studentName + ' ' + obj.studentLastName,
-                teacherPhone: eventCtrl.teacher.phone,
-                studentPhone: eventCtrl.phone,
-                date: eventCtrl.Date,
-                start: eventCtrl.startHour,
-                end: eventCtrl.endHour,
-                title: eventCtrl.teacher.subject,
-            })
-        }).then((response) => {
-            const result = response.content.toJSON();
-            console.log(result)
+                if (result.status === 'ok') {
+                    alert('Lesson has been added');
 
-            if (result.status === 'ok') {
-                alert('Lesson has been added')
+                    let lesson = new Date(eventCtrl.Date);
+                    lesson.setHours(eventCtrl.startHour);
+                    let yesterday = new Date(eventCtrl.Date);
+                    yesterday.setHours(eventCtrl.startHour);
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    console.log("yesterday ", yesterday)
+
+                    LocalNotifications.schedule([{
+                        id: eventCtrl.notificationId,
+                        title: eventCtrl.teacher.subject,
+                        body: `Remember! You have a lesson with ${eventCtrl.teacher.firstname} tomorrow at ${eventCtrl.startHour}:00`,
+                        ticker: 'obj.ticker',
+                        at: yesterday
+                    }]).then(() => {
+                        console.log("Notification scheduled");
+                    }, (error) => {
+                        console.log("ERROR", error);
+                    });
+                    applicationSettings.setNumber('localNotification', ++eventCtrl.notificationId);
+                }
                 var topmost = frameModule.topmost();
                 topmost.navigate("views/teacher-page/teacher-page");
-            } else {
-                alert("Cant Add this lesson")
-            }
-
-        }, (err) => {
-            console.log("err post=", err);
-        });
+            }, (err) => {
+                console.log("err post=", err);
+            })
+        } else {
+            alert("Cant Add this lesson")
+        }
+    } else {
+        alert("Enter phone number And check if it valid")
     }
+}
+
+function doAddOnMessageReceivedCallback() {
+    LocalNotifications.addOnMessageReceivedCallback(
+        function(notificationData) {
+            dialogs.alert({
+                title: "Notification received",
+                message: /*"ID: " + notificationData.id +*/ "\nTitle: " + notificationData.title +
+                    "\nBody: " + notificationData.body,
+                okButtonText: "Excellent!"
+            });
+        }
+    );
 }
 
 exports.pageLoaded = function(args) {
@@ -145,7 +177,9 @@ exports.pageLoaded = function(args) {
     eventCtrl.year = d.getFullYear();
     eventCtrl.Date = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
     console.log("eventCtrl.Date:", eventCtrl.Date);
-    eventCtrl.phone = obj.get("phone")
+    eventCtrl.phone = obj.get("phone");
+
+    doAddOnMessageReceivedCallback();
 }
 
 exports.onPickerLoadedStart = function(eventData) {
@@ -179,27 +213,33 @@ exports.onPickerLoadedEnd = function(eventData) {
 }
 
 exports.phone = function() {
-    httpModule.getJSON("https://final-project-lessons.herokuapp.com/student/studentPhone/" + eventCtrl.phone)
-        .then((result) => {
-            alert(eventCtrl.phone + " valid")
 
-            obj.student_id = result.data[0]._id;
-            console.log("res-->", obj.student_id);
-
-            obj.studentName = result.data[0].firstname;
-            console.log("res-->", obj.studentName)
-
-            obj.studentLastName = result.data[0].lastname;
-            console.log("res-->", obj.studentLastName);
-
-            // obj.studentPhone = result.data[0].phone;
-            // console.log("res-->", obj.studentPhone);
-        }, (e) => {
-            console.error(Error);
-            alert(eventCtrl.phone + " Not valid")
-        });
-
-    obj.studentPhone = eventCtrl.phone;
+    if (eventCtrl.phone != null) {
+        httpModule.getJSON("https://final-project-lessons.herokuapp.com/student/getAllStudents")
+            .then((result) => {
+                //console.log("result.data[i].phone: ", result.data)
+                for (let i = 0; i < result.data.length; i++) {
+                    console.log("result.data[i].phone: ", result.data[i].phone)
+                    if (eventCtrl.phone == result.data[i].phone) {
+                        obj.studentPhone = result.data[i].phone
+                        obj.student_id = result.data[i]._id;
+                        obj.studentName = result.data[i].firstname;
+                        obj.studentLastName = result.data[i].lastname;
+                        phoneClicked = true;
+                        console.log("obj.student_id", obj.student_id)
+                    }
+                }
+                if (phoneClicked == false) {
+                    alert("Phone number is not exist")
+                } else if (phoneClicked == true) {
+                    alert(obj.studentName + ' ' + obj.studentLastName + ' phone number')
+                }
+            }, (e) => {
+                console.error(Error);
+            });
+    } else {
+        alert("Enter phone number")
+    }
 }
 
 exports.onHomeTap = function(args) {

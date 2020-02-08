@@ -1,0 +1,25 @@
+.box {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.form {
+    flex-grow: 1;
+    vertical-align: middle;
+    margin: 0 30;
+}
+
+.btn-primary {
+    height: 30;
+    margin: 30 5 15 5;
+    background-color: red;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+}
+
+.list-group {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}

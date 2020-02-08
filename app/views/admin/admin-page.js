@@ -6,20 +6,20 @@ const applicationSettings = require("tns-core-modules/application-settings");
 
 
 
-const obj = fromObject({
-    firstname: '',
-});
+const obj = fromObject({});
 
 
 exports.loaded = function(args) {
     const page = args.object;
     page.bindingContext = obj;
-    console.log("Student profige Page Loaded");
+}
 
-    let student = JSON.parse(applicationSettings.getString('user'));
-    obj.firstname = student.firstname
-    obj.firstname = student.firstname
-    obj.firstname = student.firstname
-    obj.firstname = student.firstname
-    obj.firstname = student.firstname
+exports.allStudents = function(args) {
+    var topmost = frameModule.topmost();
+    topmost.navigate("views/All-Students/All-Students");
+}
+
+exports.allTeachers = function(args) {
+    var topmost = frameModule.topmost();
+    topmost.navigate("views/All-Teachers/All-Teachers");
 }

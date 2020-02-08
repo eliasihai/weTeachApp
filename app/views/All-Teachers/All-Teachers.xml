@@ -1,0 +1,22 @@
+<Page xmlns:Card="@nstudio/nativescript-cardview"  xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded">
+
+    <ActionBar title="We Teach" icon="" class="Bar">
+    </ActionBar>
+    <FlexboxLayout class="box">
+        
+        <StackLayout>
+            <SearchBar class="searchBar" id="searchBar" hint="Search..." text="" clear="onClear" submit="SearchButton" />
+        </StackLayout>
+
+        <ListView items="{{ filteredTeachers }}" itemTap="onItemTap" separatorColor="orangered"
+                rowHeight="130" class="list-group" id="listView" row="2" > 
+            <ListView.itemTemplate>
+                <StackLayout class="list-group-item">
+                    <Label text="{{ firstname +' ' + lastname|| 'Downloading...' }}" textWrap="true" class="title" />
+                    <Label text="{{ phone || 'Downloading...' }}" textWrap="true" class="title" />
+                    <Label text="{{ email || 'Downloading...' }}" textWrap="true" class="title" />
+                </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </FlexboxLayout>
+</Page>

@@ -27,9 +27,9 @@ var pageData = fromObject({
 exports.pageLoaded = function(args) {
     page = args.object;
     page.bindingContext = pageData;
-    let minDateVar = new Date();
-    console.log("minDate:", minDateVar.getDate())
-        //pageData.set("minDate", minDateVar)
+    //let minDateVar = new Date();
+    //console.log("minDate:", minDateVar.getDate())
+    //pageData.set("minDate", minDateVar)
 
     let user = JSON.parse(applicationSettings.getString('user'));
     var teacher = JSON.parse(applicationSettings.getString('teacher'));
@@ -113,4 +113,11 @@ exports.onHomeTap = function(args) {
         topmost.navigate('views/Student-Home/Student-Home');
     } else if (teacherNav.type == 'teacher')
         topmost.navigate('views/teacher-page/teacher-page');
+}
+
+
+exports.allStudents = function(args) {
+    var topmost = frameModule.topmost();
+
+    topmost.navigate('views/All-Students/All-Students');
 }

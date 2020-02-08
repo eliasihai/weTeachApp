@@ -15,10 +15,10 @@
                     <ListView.itemTemplate>
                         <Card:CardView >
                             <StackLayout class="cardStyle">
-                                <Label class="field" text="{{ 'Name: ' +  studentName || 'Downloading...' }}" textWrap="true" />
-                                <Label class="field" text="{{'Phone: ' +  studentPhone || 'Downloading...'}}" textWrap="true" />
-                                <Label class="field" text="{{'Date: ' +  date || 'Downloading...'}}" textWrap="true" />
-                                <Label class="field" text="{{ end + ':00 ' + start + ':00 ' || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{studentName || 'Downloading...' }}" textWrap="true" />
+                                <Label class="field" text="{{studentPhone || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{dateString || 'Downloading...'}}" textWrap="true" />
+                                <Label class="field" text="{{ start + ':00 - ' + end + ':00 '  || 'Downloading...'}}" textWrap="true" />
                             </StackLayout>
                         </Card:CardView>
                     </ListView.itemTemplate>

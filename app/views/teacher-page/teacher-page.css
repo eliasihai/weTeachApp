@@ -29,6 +29,7 @@
 .field {
     text-align: center;
     font-weight: bold;
+    font-size: 12px;
 }
 
 .button {

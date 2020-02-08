@@ -10,5 +10,7 @@
 
 
         <Button text="del" class="btn btn-primary m-t-10" tap="del"/>
+        <Button text="Print" class="btn btn-primary m-t-10" tap="Print"/>
+
     </StackLayout>
 </Page>

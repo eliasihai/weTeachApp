@@ -6,9 +6,9 @@
     <ActionBar title="{{teacherFirstName + ' ' + teacherLastName}}">
         <navigation.actionBar>
             
-            <ActionItem tap="onDelete"
+            <ActionItem tap="allStudents"
             ios.systemIcon="16" ios.position="right"
-            text="delete" android.position="popup"></ActionItem>
+            text="All Student" android.position="popup"></ActionItem>
             
         </navigation.actionBar>
         <navigation.actionBar>

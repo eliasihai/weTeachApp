@@ -9,12 +9,31 @@
     vertical-align: middle;
 } */
 
+.page {
+    box-sizing: border-box;
+}
+
+.form {
+    margin-left: 30;
+    margin-right: 30;
+    flex-grow: 1;
+    align-items: center;
+    padding: 100px 20px 0px 20px;
+    font-size: 20px;
+}
+
 .time-picker {
-    background-color: olivedrab;
-    border-color: burlywood;
-    border-width: 2;
-    border-radius: 10;
-    color: whitesmoke;
-    vertical-align: middle;
-    height: 300px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    height: 500px;
+    width: 100%;
+}
+
+.date {
+    text-align: center;
+    font-size: 20px;
+}
+
+.btn {
+    margin-top: 60px;
 }

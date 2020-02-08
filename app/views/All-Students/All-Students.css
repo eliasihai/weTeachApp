@@ -1,0 +1,41 @@
+.box {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.field {
+    text-align: center;
+    margin-top: 10;
+}
+
+.Bar {
+    align-items: center;
+    text-align: left;
+}
+
+.list-group {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.searchBar {
+    height: 60;
+    font-size: 14;
+}
+
+.action-image {
+    width: 40;
+    height: 40;
+    vertical-align: center;
+}
+
+.action-label {
+    color: #3C5AFD;
+    font-size: 24;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+.list-group-item {
+    background-color: #D3D3D3;
+}

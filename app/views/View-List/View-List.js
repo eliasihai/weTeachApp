@@ -42,13 +42,6 @@ exports.SearchButton = function(args) {
                 item.city.toLowerCase().indexOf(searchBar.text.split(' ')[1].toLowerCase()) != -1
         }));
     }
-
-
-
-    /*obj.filteredTeachers = obj.myObservableArray.filter((item) => {
-        return item.subject.toLowerCase().indexOf(searchBar.text.split(' ')[0].toLowerCase()) != -1 ||
-            item.city.toLowerCase().indexOf(searchBar.text.split(' ')[1].toLowerCase()) != -1
-    });*/
 }
 
 exports.loaded = function(args) {

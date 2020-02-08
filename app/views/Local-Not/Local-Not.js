@@ -31,7 +31,7 @@ export function schedule() {
         title: obj.title,
         body: obj.body,
         ticker: obj.ticker,
-        at: new Date(new Date().getTime() + (10 * 1000))
+        at: new Date(new Date().getTime() + (3 * 1000))
     }]).then(() => {
         console.log("Notification scheduled");
     }, (error) => {
@@ -58,6 +58,14 @@ function doAddOnMessageReceivedCallback() {
 export function del() {
     LocalNotifications.cancelAll();
 
+    LocalNotifications.getScheduledIds().then(
+        function(ids) {
+            console.log("ID's: " + ids);
+        }
+    )
+}
+
+export function Print() {
     LocalNotifications.getScheduledIds().then(
         function(ids) {
             console.log("ID's: " + ids);

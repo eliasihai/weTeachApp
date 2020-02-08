@@ -1,0 +1,11 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded">
+
+    <ActionBar title="Admin" icon="" class="Bar" ios.position="right" android.position="left"></ActionBar>
+    <FlexboxLayout class="box">
+        <StackLayout class="form">
+            <Button text="All Teachers" tap="allTeachers" class="btn btn-primary m-t-10" />
+            <Button text="All Students" tap="allStudents" class="btn btn-primary m-t-10" />
+
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

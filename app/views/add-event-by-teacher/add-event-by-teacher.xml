@@ -26,10 +26,11 @@
                 <StackLayout row="0" columns="1x2" class="input-field" id="container">
                     <TextField text="{{ phone }}" hint="Enter Phone Number" class="input" keyboardType="phone" autocapitalizationType="none" />                
                     <Button text="Click to check if Phone is valid" tap="phone"></Button>
+                    <StackLayout class="hr-light" />
                 </StackLayout>
 
                 <StackLayout row="1">
-                    <Label text="{{ Date }}" textWrap="true" />
+                    <Label class="date" text="{{ Date }}" textWrap="true" />
                 </StackLayout>
 
                 <StackLayout row="2">

@@ -23,9 +23,8 @@
                 </StackLayout>
 
                 <StackLayout row="2">
-                    <!--DatePicker day="{{day}}" month="{{month}}" year="{{year}}"></DatePicker-->
                     <Label text="{{ Date }}" textWrap="true" />
-                    <Label text="Lesson can be 1 hour or 2 hours" textWrap="true" />
+                    <Label text="Lesson can to be 1 hour or 2 hours" textWrap="true" />
                     
                 </StackLayout>
                 
