@@ -27,9 +27,6 @@ var pageData = fromObject({
 exports.pageLoaded = function(args) {
     page = args.object;
     page.bindingContext = pageData;
-    //let minDateVar = new Date();
-    //console.log("minDate:", minDateVar.getDate())
-    //pageData.set("minDate", minDateVar)
 
     let user = JSON.parse(applicationSettings.getString('user'));
     var teacher = JSON.parse(applicationSettings.getString('teacher'));

@@ -10,7 +10,8 @@ const ObservableArray = require("tns-core-modules/data/observable-array").Observ
 var myObservableArray = new ObservableArray();
 var filteredTeachers = new ObservableArray();
 var AfterDeleteTeacher = new ObservableArray();
-
+var studentsArr = new ObservableArray();
+var studentsArrSorted = new ObservableArray();
 
 var obj = fromObject({
     // Student values
@@ -23,7 +24,7 @@ var obj = fromObject({
     // students values
     myObservableArray: [],
     filteredTeachers: [],
-    AfterDeleteTeacher: []
+    AfterDeleteTeacher: [],
 });
 
 exports.SearchButton = function(args) {
@@ -61,11 +62,14 @@ exports.loaded = function(args) {
 };
 
 exports.onItemTap = function(args) {
+    var page = args.object;
     const index = args.index;
+    page.bindingContext = obj
+    console.log("index: ", index)
     dialogs.action({
         //message: "Are you want to delete this lecture?",
         cancelButtonText: "Cancel",
-        actions: ["Delete", "Lessons count", "Students count"]
+        actions: ["Delete", "Lessons count"]
     }).then(function(result) {
         console.log("Dialog result: " + result);
         if (result == "Delete") {
@@ -85,6 +89,7 @@ exports.onItemTap = function(args) {
             }, (e) => {
                 console.log("err post=", e);
             });
+
         } else if (result == "Lessons count") {
             httpModule.getJSON("https://final-project-lessons.herokuapp.com/lecture/teacher/" + obj.filteredTeachers[index]._id)
                 .then((result) => {
@@ -92,32 +97,45 @@ exports.onItemTap = function(args) {
                 }, (e) => {
                     console.error(Error);
                 });
-        } else if (result == "Students count") {
-            httpModule.getJSON("https://final-project-lessons.herokuapp.com/lecture/teacher/" + obj.filteredTeachers[index]._id)
-                .then((result) => {
-                    let studentsArr = [];
 
-                    for (let i = 0; i < result.data.length; i++) {
-                        for (let j = 0; j < studentsArr.length; j++) {
-                            if (result.data[i]._id != studentsArr[j]) {
-                                studentsArr.push(result.data[i]._id);
-                            }
-                        }
-                    }
+            // } else if (result == "Students count") {
+            //     httpModule.getJSON("https://final-project-lessons.herokuapp.com/lecture/teacher/" + obj.filteredTeachers[index]._id)
+            //         .then((result) => {
 
-                    alert(studentsArr.length)
-                }, (e) => {
-                    console.error(Error);
-                });
+            //             for (let i = 0; i < result.data.length; i++) {
+            //                 studentsArr.push(result.data[i].studentID);
+            //             }
+
+            //             obj.set("studentsArr", studentsArr);
+            //             studentsArr.sort()
+
+            //             for (let i = 0; i < studentsArr.length; i++) {
+            //                 // if (studentsArr[i] == studentsArr[i + 1]) {
+            //                 //     studentsArr.shift(studentsArr[i])
+            //                 // }
+            //                 console.log(studentsArr[i]);
+            //             }
+            //             console.log(studentsArr.length);
+
+
+            //         }, (e) => {
+            //             console.error(Error);
+            //         });
+            //     studentsArr = []
         }
     });
 
-    var topmost = frameModule.topmost();
-    topmost.navigate("views/All-Teachers/All-Teachers");
+    // var topmost = frameModule.topmost();
+    // topmost.navigate("views/All-Teachers/All-Teachers");
 }
 
 exports.onClear = function(args) {
     const searchBar = args.object;
     console.log("Clear event raised");
     obj.filteredTeachers = obj.myObservableArray;
+}
+
+exports.onHomeTap = function() {
+    var topmost = frameModule.topmost();
+    topmost.navigate("views/admin/admin-page");
 }

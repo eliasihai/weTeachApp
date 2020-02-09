@@ -77,22 +77,6 @@ exports.onItemTap = function(args) {
 
     applicationSettings.setString('teacher', JSON.stringify(obj.myObservableArray[index]));
     frame.navigate('views/calendar/calendar');
-
-    // dialogs.action({
-    //     // message: "Are you want to delete this lecture?",
-    //     cancelButtonText: "Cancel",
-    //     actions: ["Calendar", "Teacher Details"]
-    // }).then(function(result) {
-    //     console.log("Dialog result: " + result);
-    //     if (result == "Calendar") {
-    //         applicationSettings.setString('teacher', JSON.stringify(obj.myObservableArray[index]));
-    //         var topmost = frameModule.topmost();
-    //         topmost.navigate("views/calendar/calendar");
-    //     } else if (result == "Teacher Details") {
-    //        var topmost = frameModule.topmost();
-    //         topmost.navigate("views/teacher-calendar/teacher-calendar");
-    //     }
-    // });
 }
 
 exports.onClear = function(args) {

@@ -1,7 +1,11 @@
 <Page xmlns:Card="@nstudio/nativescript-cardview"  xmlns="http://schemas.nativescript.org/tns.xsd" loaded="loaded">
 
     <ActionBar title="We Teach" icon="" class="Bar">
-    </ActionBar>
+
+    <navigation.actionBar>
+        <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
+    </navigation.actionBar>
+</ActionBar>
     <FlexboxLayout class="box">
         
         <StackLayout>

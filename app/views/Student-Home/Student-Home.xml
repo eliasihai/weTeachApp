@@ -8,13 +8,8 @@
             <android>
                 <ActionItem text="Log Out" android.position="actionBarIfRoom" tap="onLogout" />
                 <ActionItem tap="onProfile" ios.systemIcon="16" ios.position="right" text="Profile" android.position="popup"></ActionItem>
-                <!--ActionItem text="Single" android.position="popup" tap="onSingleSetSelectionModeTap" />
-                <ActionItem text="Multiple" android.position="popup" tap="onMultipleSetSelectionModeTap" />
-                <ActionItem text="Range" android.position="popup" tap="onRangeSetSelectionModeTap" /-->
             </android>
         </ActionBar.actionItems>
-        <!-- <NavigationButton text="Go Home" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton> -->
-        <!--ActionItem ios.systemIcon="2" android.systemIcon="ic_menu_edit" ios.position="right"></ActionItem-->
     </ActionBar>
 
     <FlexboxLayout class="box">

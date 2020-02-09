@@ -1,20 +1,13 @@
 <Page actionBarHidden="false"  class="page" xmlns="http://www.nativescript.org/tns.xsd" loaded="pageLoaded">
     <ActionBar >
         <navigation.actionBar>
-            
-            <ActionItem tap="onDelete"
-            ios.systemIcon="16" ios.position="right"
-            text="delete" android.position="popup"></ActionItem>
-
-        </navigation.actionBar>
-        <navigation.actionBar>
             <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
         </navigation.actionBar>
     </ActionBar>
 
     <FlexboxLayout class="page">
         <StackLayout class="form">
-            <GridLayout rows="auto,auto,auto,auto,auto,auto" columns="*">
+            <GridLayout rows="auto,auto,auto,auto" columns="*">
                 <!-- <StackLayout row="0">
                     <Label text="{{teacher.firstname + ' ' + teacher.lastname}}" textWrap="true" />
                 </StackLayout>

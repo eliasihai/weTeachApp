@@ -23,3 +23,11 @@ exports.allTeachers = function(args) {
     var topmost = frameModule.topmost();
     topmost.navigate("views/All-Teachers/All-Teachers");
 }
+
+
+exports.onLogout = function() {
+    applicationSettings.setString('user', 'null')
+    alert("loged out");
+    var topmost = frameModule.topmost();
+    topmost.navigate("views/login/login");
+}

@@ -19,8 +19,6 @@ exports.loaded = function(args) {
     console.log("Log in page");
 };
 
-
-
 exports.signIn = async function(args) {
     const email = obj.get('email')
     const password = obj.get('password')
@@ -30,34 +28,53 @@ exports.signIn = async function(args) {
     const page = button.page;
     const frame = page.frame;
 
-    if (email == "admin" && password == "admin") {
-        frame.navigate('views/admin/admin-page')
-    }
-
-    const res = await httpModule.request({
-        url: 'https://final-project-lessons.herokuapp.com/login',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        content: JSON.stringify({
-            email,
-            password,
-            type
+    if (email == 'admin' && password == 'admin') {
+        const res = await httpModule.request({
+            url: 'https://final-project-lessons.herokuapp.com/login/adminLogin',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            content: JSON.stringify({
+                email,
+                password,
+            })
         })
-    })
-    const result = res.content.toJSON()
-    console.log('res: ', result)
 
-    if (result.status === 'ok') {
-        applicationSettings.setString('user', JSON.stringify(result.data));
+        const result = res.content.toJSON()
+        console.log('res: ', result)
+        if (result.status === 'ok') {
+            applicationSettings.setString('user', JSON.stringify(result.data));
+            frame.navigate('views/admin/admin-page');
+        } else
+            alert('wrong details');
 
-        if (result.data.type == 'student')
-            frame.navigate('views/Student-Home/Student-Home')
-        else if (result.data.type == 'teacher')
-            frame.navigate('views/teacher-page/teacher-page')
-    } else
-        alert('wrong details');
+    } else {
+        const res = await httpModule.request({
+            url: 'https://final-project-lessons.herokuapp.com/login',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            content: JSON.stringify({
+                email,
+                password,
+                type
+            })
+        })
+        const result = res.content.toJSON()
+        console.log('res: ', result)
+
+        if (result.status === 'ok') {
+            applicationSettings.setString('user', JSON.stringify(result.data));
+
+            if (result.data.type == 'student')
+                frame.navigate('views/Student-Home/Student-Home')
+            else if (result.data.type == 'teacher')
+                frame.navigate('views/teacher-page/teacher-page')
+        } else
+            alert('wrong details');
+    }
 }
 
 exports.register = function() {
