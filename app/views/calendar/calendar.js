@@ -8,6 +8,7 @@ const ObservableArray = require("tns-core-modules/data/observable-array").Observ
 
 var calendarEventsFromDB = new ObservableArray();
 var page;
+var selectedDay;
 var pageData = fromObject({
     // Student values
     firstname: '',
@@ -64,9 +65,10 @@ exports.dateSelect = function(args) {
     console.log('args date:', args.date);
     console.log('args day:', args.date.getDate());
     const date = args.date;
+    selectedDay = args.date;
     console.log('date new date :', date);
     applicationSettings.setString("date", args.date.toString());
-    const cal = page.getViewById('calendar');
+    //const cal = page.getViewById('calendar');
     //cal.viewMode = calendarModule.CalendarViewMode.Day;
 
     const year = args.date.getFullYear().toString()
@@ -77,24 +79,33 @@ exports.dateSelect = function(args) {
 
 exports.addLesson = function(args) {
     const page = args.object;
+    let minDate = new Date();
+    minDate.setDate(minDate.getDate() - 1);
+    console.log("minDate: ", minDate);
+    console.log('selectedDay: ', selectedDay)
+
     var student = JSON.parse(applicationSettings.getString('user'));
-    if (student.type == 'student') {
-        var navigationOptions = {
-            moduleName: 'views/add-event/add-event',
-            context: {
-                date: applicationSettings.getString('date')
+
+    if (minDate <= selectedDay) {
+        if (student.type == 'student') {
+            var navigationOptions = {
+                moduleName: 'views/add-event/add-event',
+                context: {
+                    date: applicationSettings.getString('date')
+                }
+            }
+        } else if (student.type != 'student') {
+            var navigationOptions = {
+                moduleName: 'views/add-event-by-teacher/add-event-by-teacher',
+                context: {
+                    date: applicationSettings.getString('date')
+                }
             }
         }
-    } else if (student.type != 'student') {
-        var navigationOptions = {
-            moduleName: 'views/add-event-by-teacher/add-event-by-teacher',
-            context: {
-                date: applicationSettings.getString('date')
-            }
-        }
-    }
-    console.log("date in addLesson", navigationOptions.context.date)
-    frameModule.topmost().navigate(navigationOptions);
+        console.log("date in addLesson", navigationOptions.context.date)
+        frameModule.topmost().navigate(navigationOptions);
+    } else
+        alert(`${selectedDay.toLocaleDateString()} has already passed`);
 }
 
 exports.onNavigationButtonTap = function(args) {

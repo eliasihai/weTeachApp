@@ -32,7 +32,7 @@ exports.loaded = function(args) {
 };
 
 exports.onItemTap = function(args) {
-    console.log(args)
+    //console.log(args)
     let item = obj.myTitles[args.index]
     console.log(`ListView item tap ${item.title}`);
     obj.subject = item.title
@@ -41,6 +41,8 @@ exports.onItemTap = function(args) {
 }
 
 exports.register = function() {
+
+    console.log("dasdsad", obj.subject);
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let validForm = true;
     if (obj.get('firstname') == '')
@@ -70,15 +72,13 @@ exports.register = function() {
             content: JSON.stringify({
                 firstname: obj.get('firstname'),
                 lastname: obj.get('lastname'),
-                email: obj.get('email'),
                 password: obj.get('password'),
-                repassword: obj.get('repassword'),
+                email: obj.get('email'),
+                subject: obj.get('subject'),
+                type: 'teacher',
                 phone: obj.get('phone'),
                 city: obj.get('city'),
                 address: obj.get('address'),
-                subject: obj.get('subject'),
-                type: 'teacher',
-
             })
         }).then((response) => {
             const result = response.content.toJSON();

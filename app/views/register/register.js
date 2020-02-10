@@ -52,7 +52,6 @@ exports.register = function() {
                 lastname: obj.get('lastname'),
                 email: obj.get('email'),
                 password: obj.get('password'),
-                repassword: obj.get('repassword'),
                 type: 'student',
                 phone: obj.get('phone'),
             })

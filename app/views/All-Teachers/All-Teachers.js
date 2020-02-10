@@ -11,7 +11,6 @@ var myObservableArray = new ObservableArray();
 var filteredTeachers = new ObservableArray();
 var AfterDeleteTeacher = new ObservableArray();
 var studentsArr = new ObservableArray();
-var studentsArrSorted = new ObservableArray();
 
 var obj = fromObject({
     // Student values
@@ -69,7 +68,7 @@ exports.onItemTap = function(args) {
     dialogs.action({
         //message: "Are you want to delete this lecture?",
         cancelButtonText: "Cancel",
-        actions: ["Delete", "Lessons count"]
+        actions: ["Delete", "Lessons count", "Student count"]
     }).then(function(result) {
         console.log("Dialog result: " + result);
         if (result == "Delete") {
@@ -98,30 +97,30 @@ exports.onItemTap = function(args) {
                     console.error(Error);
                 });
 
-            // } else if (result == "Students count") {
-            //     httpModule.getJSON("https://final-project-lessons.herokuapp.com/lecture/teacher/" + obj.filteredTeachers[index]._id)
-            //         .then((result) => {
+        } else if (result == "Students count") {
+            httpModule.getJSON("https://final-project-lessons.herokuapp.com/lecture/teacher/" + obj.filteredTeachers[index]._id)
+                .then((result) => {
 
-            //             for (let i = 0; i < result.data.length; i++) {
-            //                 studentsArr.push(result.data[i].studentID);
-            //             }
+                    for (let i = 0; i < result.data.length; i++) {
+                        studentsArr.push(result.data[i].studentID);
+                    }
 
-            //             obj.set("studentsArr", studentsArr);
-            //             studentsArr.sort()
+                    obj.set("studentsArr", studentsArr);
+                    // studentsArr.sort()
 
-            //             for (let i = 0; i < studentsArr.length; i++) {
-            //                 // if (studentsArr[i] == studentsArr[i + 1]) {
-            //                 //     studentsArr.shift(studentsArr[i])
-            //                 // }
-            //                 console.log(studentsArr[i]);
-            //             }
-            //             console.log(studentsArr.length);
+                    // for (let i = 0; i < studentsArr.length; i++) {
+                    //     // if (studentsArr[i] == studentsArr[i + 1]) {
+                    //     //     studentsArr.shift(studentsArr[i])
+                    //     // }
+                    //     console.log(studentsArr[i]);
+                    // }
+                    console.log(studentsArr.length);
 
 
-            //         }, (e) => {
-            //             console.error(Error);
-            //         });
-            //     studentsArr = []
+                }, (e) => {
+                    console.error(Error);
+                });
+            studentsArr = []
         }
     });
 
