@@ -1,15 +1,13 @@
 .page {
-    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
 }
 
 .form {
     margin-left: 30;
     margin-right: 30;
     flex-grow: 1;
-    /* vertical-align: middle; */
     align-items: center;
-    /* float: left;
-    width: 25%; */
     padding: 100px 20px 0px 20px;
     font-size: 20px;
 }
@@ -17,6 +15,6 @@
 .time-picker {
     margin-top: 60px;
     margin-bottom: 60px;
-    height: 500px;
+    height: 400px;
     width: 100%;
 }

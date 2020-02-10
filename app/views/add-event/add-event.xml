@@ -7,7 +7,7 @@
 
     <FlexboxLayout class="page">
         <StackLayout class="form">
-            <GridLayout rows="auto,auto,auto,auto" columns="*">
+            <GridLayout rows="auto,auto,auto,auto,auto,auto" columns="*">
                 <!-- <StackLayout row="0">
                     <Label text="{{teacher.firstname + ' ' + teacher.lastname}}" textWrap="true" />
                 </StackLayout>
