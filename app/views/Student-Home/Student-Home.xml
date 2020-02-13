@@ -1,13 +1,13 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
-    <!--ActionBar title="{{'Welcome ' + firstname }}"  icon="" class="Bar"  android.iconVisibility="always"-->
-    <ActionBar title="" icon="" class="Bar">
+    <!-- ActionBar title="{{'Welcome ' + firstname }}"  icon="" class="Bar"  android.iconVisibility="always" -->
+    <ActionBar title="{{'Welcome ' + firstname }}"   class="Bar"  >
         <ActionBar.actionItems>
             <ios>
                 <ActionItem text="Options" ios.position="right" tap="{{onOptionsTapped}}" />
             </ios>
             <android>
                 <ActionItem text="Log Out" android.position="actionBarIfRoom" tap="onLogout" />
-                <ActionItem tap="onProfile" ios.systemIcon="16" ios.position="right" text="Profile" android.position="popup"></ActionItem>
+                <ActionItem tap="onProfile" ios.systemIcon="16" ios.position="right" text="Update Profile" android.position="popup"></ActionItem>
             </android>
         </ActionBar.actionItems>
     </ActionBar>

@@ -1,0 +1,28 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
+
+    <ActionBar title="{{'Welcome ' + firstname }}"  icon="" class="Bar" ios.position="right" android.position="left">
+        <NavigationButton text="Go Back" android.systemIcon="ic_menu_home" tap="onHomeTap"></NavigationButton>
+    </ActionBar>
+
+
+    <FlexboxLayout class="box">
+        <StackLayout class="form">
+            <StackLayout class="input-field">
+                <TextField hint="Old Password" text="{{ oldpassword }}" secure="true" class="input" />
+                <StackLayout class="hr-light" />
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <TextField hint="Password" text="{{ password }}" secure="true" class="input" />
+                <StackLayout class="hr-light" />
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <TextField hint="Re-Password" text="{{ repassword }}" secure="true" class="input" />
+                <StackLayout class="hr-light" />
+            </StackLayout>
+
+            <Button text="Change password" tap="passChange" class="passChange" />
+        </StackLayout>
+    </FlexboxLayout>
+</Page>

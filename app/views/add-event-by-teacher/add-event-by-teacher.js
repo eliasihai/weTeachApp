@@ -131,7 +131,7 @@ exports.onAdd = function() {
                         title: eventCtrl.teacher.subject,
                         body: `Remember! You have a lesson with ${eventCtrl.teacher.firstname} tomorrow at ${eventCtrl.startHour}:00`,
                         ticker: 'obj.ticker',
-                        at: yesterday
+                        at: new Date(new Date().getTime() + (10 * 1000))
                     }]).then(() => {
                         console.log("Notification scheduled");
                     }, (error) => {

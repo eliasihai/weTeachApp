@@ -1,0 +1,16 @@
+.box {
+    align-items: stretch;
+    flex-direction: column;
+    margin: 0 auto;
+    vertical-align: center;
+}
+
+.input {
+    margin: 30px 40px;
+}
+
+.passChange {
+    background-color: red;
+    color: white;
+    width: 50%;
+}

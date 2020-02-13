@@ -2,7 +2,11 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:Card="@nstudio/nativescript-cardview" loaded="loaded">
     <ActionBar title="Teacher Managment Page">
          <navigation.actionBar>
+            <!-- <ActionItem tap="onProfile"
+            ios.systemIcon="16" ios.position="right"
+            text="Profile" android.position="popup"></ActionItem> -->
            <ActionItem text="Log Out" android.position="actionBarIfRoom" tap="onLogout" />
+           <ActionItem tap="onProfile" ios.systemIcon="16" ios.position="right" text="Update Profile" android.position="popup"></ActionItem>
         </navigation.actionBar> 
     </ActionBar>
 

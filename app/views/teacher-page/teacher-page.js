@@ -110,3 +110,8 @@ exports.onLogout = function() {
     var topmost = frameModule.topmost();
     topmost.navigate("views/login/login");
 }
+
+exports.onProfile = function(args) {
+    var topmost = frameModule.topmost();
+    topmost.navigate("views/teacher-profile/teacher-profile");
+}
